@@ -8,8 +8,9 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import Chart from "./Chart";
 import { Pro } from "../api/Producto";
+import { Carrito } from "./Carrito";
 
-export const Create = () => {
+export const Create = ({ showAddButton, showForm, onAddClick, showDelete }) => {
   const [users, setUsers] = useState([]);
   const [category, setCategory] = useState([]);
   const [form, setForm] = useState({
@@ -83,116 +84,117 @@ export const Create = () => {
   return (
     <>
       <div className="row">
-        <div className="col-md-4">
-          <div class="max-w-sm p-6 bg-black border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Crear Producto
-            </h5>
+        {!showForm && (
+          <div className="col-md-4">
+            <div class="max-w-sm p-6 bg-black border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                Crear Producto
+              </h5>
+              <form class="max-w-md mx-auto" onSubmit={handleSubmit}>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input
+                    type="text"
+                    value={name}
+                    name="name"
+                    id="floating_email"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    onChange={handleChange}
+                    required
+                  />
+                  <label
+                    for="floating_email"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Nombre
+                  </label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input
+                    type="text"
+                    value={description}
+                    name="description"
+                    id="floating_email"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    onChange={handleChange}
+                    required
+                  />
+                  <label
+                    for="floating_email"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Description
+                  </label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input
+                    type="number"
+                    id="floating_password"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required
+                    value={price}
+                    name="price"
+                    onChange={handleChange}
+                    min={0}
+                  />
+                  <label
+                    for="floating_password"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Precio
+                  </label>
+                </div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <input
+                    type="number"
+                    id="floating_repeat_password"
+                    class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                    placeholder=" "
+                    required
+                    value={Stock}
+                    name="Stock"
+                    min={0}
+                    onChange={handleChange}
+                  />
+                  <label
+                    for="floating_repeat_password"
+                    class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                  >
+                    Stock
+                  </label>
+                </div>
 
-            <form class="max-w-md mx-auto" onSubmit={handleSubmit}>
-              <div class="relative z-0 w-full mb-5 group">
-                <input
-                  type="text"
-                  value={name}
-                  name="name"
-                  id="floating_email"
-                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  required
-                />
-                <label
-                  for="floating_email"
-                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Nombre
-                </label>
-              </div>
-              <div class="relative z-0 w-full mb-5 group">
-                <input
-                  type="text"
-                  value={description}
-                  name="description"
-                  id="floating_email"
-                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  onChange={handleChange}
-                  required
-                />
-                <label
-                  for="floating_email"
-                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Description
-                </label>
-              </div>
-              <div class="relative z-0 w-full mb-5 group">
-                <input
-                  type="number"
-                  id="floating_password"
-                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                  value={price}
-                  name="price"
-                  onChange={handleChange}
-                  min={0}
-                />
-                <label
-                  for="floating_password"
-                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Precio
-                </label>
-              </div>
-              <div class="relative z-0 w-full mb-5 group">
-                <input
-                  type="number"
-                  id="floating_repeat_password"
-                  class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
-                  placeholder=" "
-                  required
-                  value={Stock}
-                  name="Stock"
-                  min={0}
-                  onChange={handleChange}
-                />
-                <label
-                  for="floating_repeat_password"
-                  class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
-                >
-                  Stock
-                </label>
-              </div>
+                <div class="relative z-0 w-full mb-5 group">
+                  <select
+                    onChange={handleChange}
+                    id="underline_select"
+                    value={category_id}
+                    name="category_id"
+                    class="block py-2.5 px-0 w-full text-sm text-black-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-black peer"
+                  >
+                    <option selected>Seleccionar Categoria</option>
+                    {category.map((elemento, index) => {
+                      return (
+                        <option key={index} value={elemento.id}>
+                          {elemento.name}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
 
-              <div class="relative z-0 w-full mb-5 group">
-                <select
-                  onChange={handleChange}
-                  id="underline_select"
-                  value={category_id}
-                  name="category_id"
-                  class="block py-2.5 px-0 w-full text-sm text-black-500 bg-transparent border-0 border-b-2 border-gray-200 appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-black peer"
+                <button
+                  type="submit"
+                  class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
-                  <option selected>Seleccionar Categoria</option>
-                  {category.map((elemento, index) => {
-                    return (
-                      <option key={index} value={elemento.id}>
-                        {elemento.name}
-                      </option>
-                    );
-                  })}
-                </select>
-              </div>
-
-              <button
-                type="submit"
-                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-              >
-                Submit
-              </button>
-            </form>
+                  Submit
+                </button>
+              </form>
+            </div>
           </div>
-        </div>
+        )}
         <div className="col-md-8">
           <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -216,9 +218,11 @@ export const Create = () => {
                   <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                     editar
                   </th>
+                  {!showDelete && (  
                   <th scope="col" class="px-6 py-3">
                     eliminar
                   </th>
+                  )}
                 </tr>
               </thead>
               <tbody>
@@ -228,28 +232,49 @@ export const Create = () => {
                       class="border-b border-gray-200 dark:border-gray-700"
                       key={element.id}
                     >
-                      <td scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">{element.id}</td>
-                      <td scope="col" class="px-2 py-3">{element.name}</td>
+                      <td
+                        scope="col"
+                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800"
+                      >
+                        {element.id}
+                      </td>
+                      <td scope="col" class="px-2 py-3">
+                        {element.name}
+                      </td>
                       <td class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                         {element.price}
                       </td>
                       <td class="px-6 py-3">{element.category}</td>
-                      <td  class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+                      <td class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
                         {element.Stock}
                       </td>
-                      <td>
-                        <Link to={"/Update/:id"}>
+                      {showAddButton && (
+                        <td>
                           <button
-                            type="button"
-                            class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                            onClick={() => onAddClick(element)}
+                            className="btn btn-primary"
                           >
-                            Editar
+                            añadir
                           </button>
-                        </Link>
-                      </td>
-                      <td>
-                        <button className="btn btn-danger">Eliminar</button>
-                      </td>
+                        </td>
+                      )}
+                      {!showAddButton && (
+                        <td>
+                          <Link to={"/Update/:id"}>
+                            <button
+                              type="button"
+                              class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                            >
+                              Editar
+                            </button>
+                          </Link>
+                        </td>
+                      )}
+                      {!showDelete && (
+                        <td>
+                          <button className="btn btn-danger">Eliminar</button>
+                        </td>
+                      )}
                     </tr>
                   );
                 })}

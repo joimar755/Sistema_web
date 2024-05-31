@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { SimpleCharts } from "./SimpleCharts";
 import { CardUsageExample } from "./CardUsageExample";
-import { Home } from "./Home";
 
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
@@ -47,7 +46,7 @@ export const Listar_users = () => {
       <Table striped bordered hover responsive="sm">
       <SimpleCharts />
       </Table>
-      <Home />
+    
     </>
   );
 };

@@ -1,9 +1,9 @@
 import React from 'react'
 import { CButton } from '@coreui/react';
 
-const Chart = () => {
+const Chart = ({title}) => {
   return (
-    <CButton color="primary">Primary</CButton>
+    <CButton color="primary">{title}</CButton>
 
   )
 }
