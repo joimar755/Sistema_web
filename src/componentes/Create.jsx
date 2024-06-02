@@ -10,7 +10,7 @@ import Chart from "./Chart";
 import { Pro } from "../api/Producto";
 import { Carrito } from "./Carrito";
 
-export const Create = ({ showAddButton, showForm, onAddClick, showDelete }) => {
+export const Create = ({ showAddButton, showForm, onAdddClick,onAddClick, showDelete }) => {
   const [users, setUsers] = useState([]);
   const [category, setCategory] = useState([]);
   const [form, setForm] = useState({
@@ -231,6 +231,7 @@ export const Create = ({ showAddButton, showForm, onAddClick, showDelete }) => {
                     <tr
                       class="border-b border-gray-200 dark:border-gray-700"
                       key={element.id}
+                      
                     >
                       <td
                         scope="col"
