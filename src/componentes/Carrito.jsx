@@ -26,11 +26,7 @@ export const Carrito = () => {
       // Añadir el producto al carrito con cantidad inicial de 1
       nuevoCarrito = [...carrito, { ...item, quantity: 1,}];
     }
-     if (item.quantity > item.Stock) {
-        alert("producto agotado");
-     } else {
-        agregarProducto(nuevoCarrito);
-     }
+    agregarProducto(nuevoCarrito);
     //agregarProducto([...carrito, item]);
 
     const initialValue = item.price;
@@ -43,6 +39,24 @@ export const Carrito = () => {
     console.log(total);
     
   };
+  const Comprar = () => {
+     const data = carrito.map(item=>({
+       Product: item.name,
+       Cantidad:item.quantity,
+       stock:item.Stock -item.quantity,
+       SubTotal:item.price * item.quantity,  
+     }))
+     const total1 ={
+      Total: total.toFixed(2)
+     }
+     
+     localStorage.setItem('compras', JSON.stringify(data))
+     localStorage.setItem('total', JSON.stringify(total1))
+
+     console.log(data, total1)
+     agregarProducto([]);
+     setTotal(0);
+  }
   
   return (
     <>
@@ -76,7 +90,7 @@ export const Carrito = () => {
             </tr>
         </tfoot>
         </table>
-       
+        <button type="button" onClick={Comprar} class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Comprar</button>
       </div>
     </div>
     </>
