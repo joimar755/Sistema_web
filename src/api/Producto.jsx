@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = "https://nvcmw7nl-8000.use2.devtunnels.ms/datos/insertar";
+const API = "http://127.0.0.1:8000/datos/insertar";
 
 
 export const Pro = pro => axios.post(`${API}`, pro);
