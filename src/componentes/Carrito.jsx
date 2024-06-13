@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 
 import { Create } from "./Create";
+import MUIDataTable from "mui-datatables";
+
+import { TransactionsTable } from "./TransactionsTable";
 
 
 export const Carrito = () => {
@@ -43,8 +46,8 @@ export const Carrito = () => {
      const data = carrito.map(item=>({
        Product: item.name,
        Cantidad:item.quantity,
-       stock:item.Stock -item.quantity,
-       SubTotal:item.price * item.quantity,  
+       stock:item.Stock - item.quantity,
+       SubTotal:item.price * item.quantity
      }))
      const total1 ={
       Total: total.toFixed(2)
@@ -60,7 +63,7 @@ export const Carrito = () => {
   
   return (
     <>
-           <Create
+     <Create
             showAddButton={true}
             showForm={true}
             onAddClick={handleAddClick}
@@ -93,6 +96,10 @@ export const Carrito = () => {
         <button type="button" onClick={Comprar} class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Comprar</button>
       </div>
     </div>
+     <div className="flex space-x-8 p-4">
+      
+     </div>
+         
     </>
   );
 };

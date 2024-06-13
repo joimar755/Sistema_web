@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import MUIDataTable from "mui-datatables";
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
@@ -8,7 +9,6 @@ import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
 import Chart from "./Chart";
 import { Pro } from "../api/Producto";
-import { Carrito } from "./Carrito";
 
 export const Create = ({ showAddButton, showForm, onAdddClick,onAddClick, showDelete }) => {
   const [users, setUsers] = useState([]);
@@ -78,6 +78,92 @@ export const Create = ({ showAddButton, showForm, onAdddClick,onAddClick, showDe
     }
   };
   const { name, description, price, Stock, category_id } = form;
+
+  const columns = [
+    {
+      name: 'id',
+     label: 'ID',
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: 'name',
+     
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: 'price',
+      label: 'Price',
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: 'category',
+      label: 'Category',
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: 'Stock',
+      label: 'Stock',
+      options: {
+        filter: true,
+        sort: true,
+      },
+    },
+    {
+      name: 'Actions',
+      label: 'Actions',
+      options: {
+        filter: false,
+        sort: false,
+        customBodyRender: (value, tableMeta, updateValue) => {
+          const element = users[tableMeta.rowIndex];
+          return (
+            <div>
+              {showAddButton && (
+                <button
+                  onClick={() => onAddClick(element)}
+                  className="btn btn-primary"
+                >
+                  Añadir
+                </button>
+              )}
+              {!showAddButton && (
+                <Link to={`/Update/${element.id}`}>
+                  <button
+                    type="button"
+                    className="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
+                  >
+                    Editar
+                  </button>
+                </Link>
+              )}
+              {!showDelete && (
+                <button className="btn btn-danger">Eliminar</button>
+              )}
+            </div>
+          );
+        }
+      }
+    }
+  ];
+
+  const options = {
+    responsive: "standard",
+    rowsPerPage: 5,
+    rowsPerPageOptions: [5, 10, 15],
+  };
+
 
   console.log(users);
   console.log(category);
@@ -196,92 +282,13 @@ export const Create = ({ showAddButton, showForm, onAdddClick,onAddClick, showDe
           </div>
         )}
         <div className="col-md-8">
-          <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-              <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
-                <tr>
-                  <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                    #
-                  </th>
-                  <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                    Product name
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Precio
-                  </th>
-                  <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                    Category
-                  </th>
-                  <th scope="col" class="px-6 py-3">
-                    Stock
-                  </th>
-                  <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                    editar
-                  </th>
-                  {!showDelete && (  
-                  <th scope="col" class="px-6 py-3">
-                    eliminar
-                  </th>
-                  )}
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((element) => {
-                  return (
-                    <tr
-                      class="border-b border-gray-200 dark:border-gray-700"
-                      key={element.id}
-                      
-                    >
-                      <td
-                        scope="col"
-                        class="px-6 py-3 bg-gray-50 dark:bg-gray-800"
-                      >
-                        {element.id}
-                      </td>
-                      <td scope="col" class="px-2 py-3">
-                        {element.name}
-                      </td>
-                      <td class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                        {element.price}
-                      </td>
-                      <td class="px-6 py-3">{element.category}</td>
-                      <td class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
-                        {element.Stock}
-                      </td>
-                      {showAddButton && (
-                        <td>
-                          <button
-                            onClick={() => onAddClick(element)}
-                            className="btn btn-primary"
-                          >
-                            añadir
-                          </button>
-                        </td>
-                      )}
-                      {!showAddButton && (
-                        <td>
-                          <Link to={"/Update/:id"}>
-                            <button
-                              type="button"
-                              class="text-gray-900 bg-gradient-to-r from-lime-200 via-lime-400 to-lime-500 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-lime-300 dark:focus:ring-lime-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
-                            >
-                              Editar
-                            </button>
-                          </Link>
-                        </td>
-                      )}
-                      {!showDelete && (
-                        <td>
-                          <button className="btn btn-danger">Eliminar</button>
-                        </td>
-                      )}
-                    </tr>
-                  );
-                })}
-              </tbody>
-            </table>
-          </div>
+           
+        <MUIDataTable
+        title={"Lista de productos"}
+        data={users}
+        columns={columns}
+        options={options}
+        />
         </div>
       </div>
     </>
