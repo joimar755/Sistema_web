@@ -5,6 +5,7 @@ import { Create } from "./Create";
 import MUIDataTable from "mui-datatables";
 
 import { TransactionsTable } from "./TransactionsTable";
+import { Ven } from "../api/Producto";
 
 
 export const Carrito = () => {
@@ -42,7 +43,27 @@ export const Carrito = () => {
     console.log(total);
     
   };
-  const Comprar = () => {
+  const Comprar = async() => {
+      try {
+        const res = await Ven({
+          items : carrito.map(item=>({
+            Product: item.name,
+            product_id: item.id,
+            cantidad:item.quantity,
+            Subtotal:item.price * item.quantity
+          })),
+          total: total
+        })
+        const data = res.data;
+        console.log(data);       
+        console.log(res);
+        // Limpiar el carrito después de la compra
+        agregarProducto([]);
+        setTotal(0);
+      } catch (error) {
+        console.error('Error al realizar la compra', error);
+      }
+    /*
      const data = carrito.map(item=>({
        Product: item.name,
        Cantidad:item.quantity,
@@ -59,6 +80,7 @@ export const Carrito = () => {
      console.log(data, total1)
      agregarProducto([]);
      setTotal(0);
+     */
   }
   
   return (
