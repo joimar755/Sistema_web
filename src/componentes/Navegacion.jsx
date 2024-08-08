@@ -14,6 +14,7 @@ export const Navegacion = () => {
           <Nav className="me-auto">
             <Link className='nav-link' to={"/carrito"}>carrito</Link>
             <Link className='nav-link' to={"/create"}>Registrar</Link>
+            <Link className='nav-link' to={"/Ventas"}>ventas</Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

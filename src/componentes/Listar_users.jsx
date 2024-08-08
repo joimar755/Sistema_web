@@ -28,7 +28,7 @@ export const Listar_users = () => {
       setCategory(resultado.data.resultado);
     };
     const obtenerP = async () => {
-      const url = await axios.get("http://127.0.0.1:8000/relacion");
+      const url = await axios.get("http://127.0.0.1:8000/venta");
       const resultado = url;
       setP(resultado.data);
     };
@@ -38,7 +38,7 @@ export const Listar_users = () => {
   }, []);
   //console.log(dolar);
   //console.log(category);
-  //console.log(Products);
+  console.log(Products);
 
   return (
     <>

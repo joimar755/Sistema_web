@@ -1,0 +1,60 @@
+<form class="max-w-md mx-auto" onSubmit={agregar}>
+        <div class="max-w-sm p-6 bg-black border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+          <div class="mb-6">
+            <label
+              for="large-input"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Large input
+            </label>
+            <input
+              type="text"
+              id="default-input"
+              value={name}
+              name="name"
+              onChange={handleChange}
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            />
+          </div>
+          <div class="mb-6">
+            <label
+              for="default-input"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Default input
+            </label>
+            <input
+              type="number"
+              id="default-input"
+              value={cant_idad}
+              name="cant_idad"
+              onChange={handleChange}
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            />
+          </div>
+          <div>
+            <label
+              for="small-input"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Small input
+            </label>
+            <input
+              type="number"
+              id="small-input"
+              value={price}
+              name="price"
+              onChange={handleChange}
+              class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+            />
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          {" "}
+          agregar
+        </button>
+      
+      </form>

@@ -40,12 +40,12 @@ const getColumns = (showEditButton ) => [
     accessor: "id",
   },
   {
-    Header: "Name",
-    accessor: "name",
+    Header: "total",
+    accessor: "total",
   },
   {
     Header: "Price",
-    accessor: "price",
+    accessor: "producto_name",
   },
   {
     Header: "Stock",
@@ -367,7 +367,7 @@ export const TransactionsTable = () => {
     // Replace this URL with your actual API endpoint
     const fetchData = async () => {
       try {
-        const url = await axios.get("http://127.0.0.1:8000/relacion");
+        const url = await axios.get("http://127.0.0.1:8000/venta");
         const resultado = url;
         setData(resultado.data);
       } catch (error) {}

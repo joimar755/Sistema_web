@@ -161,7 +161,7 @@ export const Create = ({ showAddButton, showForm, onAdddClick,onAddClick, showDe
   const options = {
     responsive: "standard",
     rowsPerPage: 5,
-    rowsPerPageOptions: [5, 10, 15],
+    rowsPerPageOptions: [5, 10, 15,50],
   };
 
 

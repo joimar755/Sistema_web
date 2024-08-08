@@ -3,6 +3,7 @@ import { Create } from "./Create";
 import { Listar_users } from "./Listar_users";
 import { Navegacion } from "./Navegacion";
 import {Carrito} from "./Carrito";
+import { Ventas } from "./Ventas";
 
 export const App = () => {
   return (
@@ -13,6 +14,7 @@ export const App = () => {
           <Route path="/" exact element={<Listar_users />} />
           <Route path="/create" exact element={<Create />} />
           <Route path="/carrito" exact element={<Carrito />} />
+          <Route path="/ventas" exact element={<Ventas />} />
           <Route path="/edit/:id" exact element={<Create />} />
         </Routes>
       </div>
