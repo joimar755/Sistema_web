@@ -10,7 +10,7 @@ export function SimpleCharts() {
 
   useEffect(() => {
     const obtenerP = async () => {
-      const url = await axios.get("http://127.0.0.1:8000/venta");
+      const url = await axios.get("http://127.0.0.1:8000/total-diario");
       const resultado = url;
       setP(resultado.data);
     };
@@ -18,7 +18,7 @@ export function SimpleCharts() {
   }, []);
   console.log(Products)
   const  Chardata = Products.map((item) => ({
-    id : item.id,
+    fecha : item.fecha,
     total: item.total
    }))
   return (
@@ -27,7 +27,7 @@ export function SimpleCharts() {
           xAxis={[
             {
               id: "barCategories",
-              data: Chardata.map((item) => item.id),
+              data: Chardata.map((item) => item.fecha),
               scaleType: "band",
             },
           ]}
@@ -37,7 +37,7 @@ export function SimpleCharts() {
             },
           ]}
           width={1000}
-          height={300}
+          height={500}
           grid={{ vertical: true, horizontal: true }}
 
         />
