@@ -42,9 +42,9 @@ export const Listar_users = () => {
 
   return (
     <>
-      <h1 className="">Graficas Precios</h1>
       <h1>dolar</h1>
       <CardUsageExample dolars={dolar} />
+      <h1 className="">Graficas ventas</h1>
       <Table striped bordered hover responsive="sm">
       <SimpleCharts />
       </Table>

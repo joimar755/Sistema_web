@@ -15,7 +15,7 @@ export const App = () => {
           <Route path="/create" exact element={<Create />} />
           <Route path="/carrito" exact element={<Carrito />} />
           <Route path="/ventas" exact element={<Ventas />} />
-          <Route path="/edit/:id" exact element={<Create />} />
+          <Route path="/create/:id" exact element={<Create />} />
         </Routes>
       </div>
     </Router>

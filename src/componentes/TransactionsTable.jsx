@@ -45,7 +45,7 @@ const getColumns = (showEditButton ) => [
   },
   {
     Header: "Price",
-    accessor: "producto_name",
+    accessor: "createdAt",
   },
   {
     Header: "Stock",
