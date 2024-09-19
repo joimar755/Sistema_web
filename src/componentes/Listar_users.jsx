@@ -48,7 +48,6 @@ export const Listar_users = () => {
       <Table striped bordered hover responsive="sm">
       <SimpleCharts />
       </Table>
-      <TransactionsTable />
     
     </>
   );

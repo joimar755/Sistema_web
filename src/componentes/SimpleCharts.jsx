@@ -36,7 +36,7 @@ export function SimpleCharts() {
               data: Chardata.map((item) => item.total),
             },
           ]}
-          width={1000}
+          width={1200}
           height={500}
           grid={{ vertical: true, horizontal: true }}
 

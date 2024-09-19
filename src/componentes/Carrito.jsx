@@ -112,6 +112,37 @@ export const Carrito = () => {
       // Limpiar el carrito después de la compra
       agregarProducto([]);
       setTotal(0);
+
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = "https://gateway.payulatam.com/ppp-web-gateway/";
+
+      const inputs = {
+        merchantId: "1013710",
+        accountId: "1022612",
+        description: "Test PAYU",
+        referenceCode: data.referenceCode, // Recibirlo desde el backend
+        amount: data.amount,// Ajustar el cálculo si es necesario
+        currency: "COP",
+        signature: data.signature, // Generada desde el backend
+        test: "1", // Cambiar a "1" para pruebas
+        buyerEmail: "test@test.com",
+        responseUrl: "http://www.test.com/response",
+        confirmationUrl: "http://www.test.com/confirmation",
+      };
+
+      // Crear los campos hidden del formulario
+      for (const key in inputs) {
+        const input = document.createElement("input");
+        input.type = "hidden";
+        input.name = key;
+        input.value = inputs[key];
+        form.appendChild(input);
+      }
+
+      document.body.appendChild(form);
+      form.submit(); // Enviar el formulario a PayU
+
     } catch (error) {
       console.error("Error al realizar la compra", error);
     }
