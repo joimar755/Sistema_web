@@ -18,7 +18,7 @@ export const Carrito = () => {
   });
 
   const calcularTotal = (nuevoCarrito) => {
-    //const initialValue = item.price;
+    const initialValue = item.price;
     const sumWithInitial = nuevoCarrito.reduce(
       (accumulator, item) => accumulator + item.price * item.quantity,
       0
@@ -146,7 +146,7 @@ export const Carrito = () => {
     } catch (error) {
       console.error("Error al realizar la compra", error);
     }
-    /*
+    /* 
      const data = carrito.map(item=>({
        Product: item.name,
        Cantidad:item.quantity,
@@ -162,8 +162,8 @@ export const Carrito = () => {
 
      console.log(data, total1)
      agregarProducto([]);
-     setTotal(0);
-     */
+     setTotal(0); */
+    
   };
 
   const { name, cant_idad, price } = form;

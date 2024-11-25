@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import Chart from "./Chart";
 import { Pro } from "../api/Producto";
 
+
 export const Create = ({ showAddButton, showForm, onAdddClick,onAddClick, showDelete }) => {
   const [users, setUsers] = useState([]);
   const [category, setCategory] = useState([]);
