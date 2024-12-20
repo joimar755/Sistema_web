@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API = "http://127.0.0.1:8000/datos/insertar";
 
-const Venta = "http://127.0.0.1:8000/api/payu/payment";
+const Venta = "http://127.0.0.1:8000/datos/comprar";
 
 
 

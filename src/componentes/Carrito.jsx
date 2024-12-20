@@ -1,10 +1,6 @@
 import React from "react";
 import { useState } from "react";
-
 import { Create } from "./Create";
-import MUIDataTable from "mui-datatables";
-
-import { TransactionsTable } from "./TransactionsTable";
 import { Ven } from "../api/Producto";
 
 export const Carrito = () => {
@@ -18,7 +14,7 @@ export const Carrito = () => {
   });
 
   const calcularTotal = (nuevoCarrito) => {
-    const initialValue = item.price;
+    //const initialValue = item.price;
     const sumWithInitial = nuevoCarrito.reduce(
       (accumulator, item) => accumulator + item.price * item.quantity,
       0
@@ -113,6 +109,7 @@ export const Carrito = () => {
       agregarProducto([]);
       setTotal(0);
 
+     /*  
       const form = document.createElement("form");
       form.method = "POST";
       form.action = "https://gateway.payulatam.com/ppp-web-gateway/";
@@ -141,7 +138,7 @@ export const Carrito = () => {
       }
 
       document.body.appendChild(form);
-      form.submit(); // Enviar el formulario a PayU
+      form.submit(); */ // Enviar el formulario a PayU
 
     } catch (error) {
       console.error("Error al realizar la compra", error);

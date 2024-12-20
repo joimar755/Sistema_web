@@ -1,19 +1,14 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import MUIDataTable from "mui-datatables";
-import Table from "react-bootstrap/Table";
-import Col from "react-bootstrap/Col";
-import Form from "react-bootstrap/Form";
-import InputGroup from "react-bootstrap/InputGroup";
-import Row from "react-bootstrap/Row";
 import { Link } from "react-router-dom";
-import Chart from "./Chart";
 import { Pro } from "../api/Producto";
 
 
 export const Create = ({ showAddButton, showForm, onAdddClick,onAddClick, showDelete }) => {
   const [users, setUsers] = useState([]);
   const [category, setCategory] = useState([]);
+  const URL = "https://b197-152-204-153-34.ngrok-free.app"
   const [form, setForm] = useState({
     name: "",
     description: "",
